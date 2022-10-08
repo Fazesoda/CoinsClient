@@ -11,7 +11,9 @@ import com.google.gson.JsonObject;
 
 import me.mindlessly.notenoughcoins.client.Client;
 import net.minecraft.client.Minecraft;
+import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
 
 public class ApiHandler {
 
@@ -68,10 +70,14 @@ public class ApiHandler {
 						if (current.has("bin") && current.get("item_name").getAsString().contains(auction.getName())
 						/* && current.get("tier").getAsString() == auction.getTier() */) {
 							double price = current.get("starting_bid").getAsDouble();
-							if (price < auction.getPrice()) {
+							if (price < auction.getPrice() - 100000) {
+								ChatComponentText flip = new ChatComponentText(current.get("item_name").getAsString()
+										+ " +" + String.valueOf((auction.getPrice() - price)));
+								ChatStyle style = new ChatStyle().setChatClickEvent(
+										new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/viewauction "+current.get("auction_id").getAsString()));
 								Minecraft.getMinecraft().thePlayer
-										.addChatMessage(new ChatComponentText(current.get("item_name").getAsString()
-												+ " +" + String.valueOf((auction.getPrice() - price))));
+										.addChatMessage(flip);
+								
 							}
 						}
 					}
