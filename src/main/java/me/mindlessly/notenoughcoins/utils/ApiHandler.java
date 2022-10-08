@@ -68,8 +68,10 @@ public class ApiHandler {
 						if (current.has("bin") && current.get("item_name").getAsString().contains(auction.getName())
 						/* && current.get("tier").getAsString() == auction.getTier() */) {
 							double price = current.get("starting_bid").getAsDouble();
-							if(price < auction.getPrice()) {
-								Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(auction.getName() + " +" +String.valueOf((auction.getPrice()-price))));
+							if (price < auction.getPrice()) {
+								Minecraft.getMinecraft().thePlayer
+										.addChatMessage(new ChatComponentText(current.get("item_name").getAsString()
+												+ " +" + String.valueOf((auction.getPrice() - price))));
 							}
 						}
 					}
