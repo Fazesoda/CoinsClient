@@ -67,17 +67,19 @@ public class ApiHandler {
 					JsonObject current = item.getAsJsonObject();
 					for (Auction auction : Client.binPrices) {
 						System.out.println(current.get("tier").getAsString() + " " + auction.getTier());
-						if (current.has("bin") && current.get("item_name").getAsString().contains(auction.getName())
+						if (current.has("bin") && current.get("bin").getAsString().equals("true")
+								&& current.get("item_name").getAsString().contains(auction.getName())
 						/* && current.get("tier").getAsString() == auction.getTier() */) {
 							double price = current.get("starting_bid").getAsDouble();
 							if (price < auction.getPrice() - 100000) {
 								ChatComponentText flip = new ChatComponentText(current.get("item_name").getAsString()
 										+ " +" + String.valueOf((auction.getPrice() - price)));
-								ChatStyle style = new ChatStyle().setChatClickEvent(
-										new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/viewauction "+current.get("uuid").getAsString()));
-								Minecraft.getMinecraft().thePlayer
-										.addChatMessage(flip);
-								
+								ChatStyle style = new ChatStyle()
+										.setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+												"/viewauction " + current.get("uuid").getAsString()));
+								flip.setChatStyle(style);
+								Minecraft.getMinecraft().thePlayer.addChatMessage(flip);
+
 							}
 						}
 					}
