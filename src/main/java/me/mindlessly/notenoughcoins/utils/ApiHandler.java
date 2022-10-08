@@ -74,7 +74,7 @@ public class ApiHandler {
 								ChatComponentText flip = new ChatComponentText(current.get("item_name").getAsString()
 										+ " +" + String.valueOf((auction.getPrice() - price)));
 								ChatStyle style = new ChatStyle().setChatClickEvent(
-										new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/viewauction "+current.get("auction_id").getAsString()));
+										new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/viewauction "+current.get("uuid").getAsString()));
 								Minecraft.getMinecraft().thePlayer
 										.addChatMessage(flip);
 								
