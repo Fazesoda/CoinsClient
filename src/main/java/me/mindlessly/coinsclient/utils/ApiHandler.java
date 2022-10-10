@@ -1,8 +1,8 @@
-package me.mindlessly.notenoughcoins.utils;
+package me.mindlessly.coinsclient.utils;
 
-import static me.mindlessly.notenoughcoins.utils.Utils.getInternalnameFromNBT;
-import static me.mindlessly.notenoughcoins.utils.Utils.getJson;
-import static me.mindlessly.notenoughcoins.utils.Utils.getNBTFromItemBytes;
+import static me.mindlessly.coinsclient.utils.Utils.getInternalnameFromNBT;
+import static me.mindlessly.coinsclient.utils.Utils.getJson;
+import static me.mindlessly.coinsclient.utils.Utils.getNBTFromItemBytes;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +14,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import gg.essential.universal.USound;
-import me.mindlessly.notenoughcoins.Config;
+import me.mindlessly.coinsclient.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;

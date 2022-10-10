@@ -1,9 +1,9 @@
-package me.mindlessly.notenoughcoins.commands.subcommands;
+package me.mindlessly.coinsclient.commands.subcommands;
 
-import me.mindlessly.notenoughcoins.Config;
-import me.mindlessly.notenoughcoins.Main;
-import me.mindlessly.notenoughcoins.client.Client;
-import me.mindlessly.notenoughcoins.utils.Utils;
+import me.mindlessly.coinsclient.Config;
+import me.mindlessly.coinsclient.Main;
+import me.mindlessly.coinsclient.client.Client;
+import me.mindlessly.coinsclient.utils.Utils;
 import net.minecraft.command.ICommandSender;
 
 public class Toggle implements Subcommand {

@@ -1,4 +1,4 @@
-package me.mindlessly.notenoughcoins.utils;
+package me.mindlessly.coinsclient.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -18,8 +18,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import gg.essential.universal.UChat;
-import me.mindlessly.notenoughcoins.Config;
-import me.mindlessly.notenoughcoins.Main;
+import me.mindlessly.coinsclient.Config;
+import me.mindlessly.coinsclient.Main;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 

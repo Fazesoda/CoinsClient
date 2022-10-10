@@ -1,6 +1,6 @@
-package me.mindlessly.notenoughcoins.events;
+package me.mindlessly.coinsclient.events;
 
-import me.mindlessly.notenoughcoins.client.Client;
+import me.mindlessly.coinsclient.client.Client;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 

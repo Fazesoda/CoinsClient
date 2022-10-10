@@ -27,8 +27,9 @@ repositories {
 }
 dependencies {
     implementation "gg.essential:loader-launchwrapper:1.1.2"
-    implementation "gg.essential:essential-1.8.9-forge:1543+release-launch"
-    implementation 'me.nullicorn:Nedit:2.2.0'
+    implementation ("gg.essential:essential-1.8.9-forge:1543+release-launch"){
+            exclude module: 'gson'
+    }
 }
 shadowJar {
     dependencies {
@@ -42,9 +43,9 @@ test {
     systemProperty "file.encoding", "utf-8"
 }
 
-version = "0.7.3"
-group = "me.mindlessly.nec"
-archivesBaseName = "NotEnoughCoins"
+version = "0.1"
+group = "me.mindlessly.cc"
+archivesBaseName = "CoinsClient"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

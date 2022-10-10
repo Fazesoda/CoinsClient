@@ -1,4 +1,4 @@
-package me.mindlessly.notenoughcoins;
+package me.mindlessly.coinsclient;
 
 import java.io.File;
 import java.net.URI;
@@ -8,7 +8,7 @@ import gg.essential.universal.UDesktop;
 import gg.essential.vigilance.Vigilant;
 import gg.essential.vigilance.data.Property;
 import gg.essential.vigilance.data.PropertyType;
-import me.mindlessly.notenoughcoins.client.Client;
+import me.mindlessly.coinsclient.client.Client;
 
 public class Config extends Vigilant {
 	@Property(type = PropertyType.SWITCH, category = "Flipping", subcategory = "Basic", name = "Enabled", description = "Whether the mod should check for and send flips")
@@ -27,8 +27,6 @@ public class Config extends Vigilant {
 		super(CONFIG_FILE, "Coins Client Menu");
 		initialize();
 		Arrays.asList("enabled", "apiKey").forEach(property -> registerListener(property, e -> Client.checkIfUpdate()));
-		Arrays.asList("minProfit", "minProfitPercentage", "threads", "alertSounds")
-				.forEach(property -> addDependency(property, "enabled"));
 	}
 
 	@Property(type = PropertyType.BUTTON, category = "Links", name = "Discord", description = "Join our Discord server!")

@@ -1,7 +1,7 @@
-package me.mindlessly.notenoughcoins.events;
+package me.mindlessly.coinsclient.events;
 
-import me.mindlessly.notenoughcoins.Config;
-import me.mindlessly.notenoughcoins.utils.Utils;
+import me.mindlessly.coinsclient.Config;
+import me.mindlessly.coinsclient.utils.Utils;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

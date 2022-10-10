@@ -1,6 +1,6 @@
-package me.mindlessly.notenoughcoins.commands.subcommands;
+package me.mindlessly.coinsclient.commands.subcommands;
 
-import me.mindlessly.notenoughcoins.Main;
+import me.mindlessly.coinsclient.Main;
 import net.minecraft.command.ICommandSender;
 
 public class Help implements Subcommand {

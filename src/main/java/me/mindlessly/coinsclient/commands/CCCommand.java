@@ -1,4 +1,4 @@
-package me.mindlessly.notenoughcoins.commands;
+package me.mindlessly.coinsclient.commands;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Objects;
 
 import gg.essential.api.EssentialAPI;
-import me.mindlessly.notenoughcoins.Main;
-import me.mindlessly.notenoughcoins.Reference;
-import me.mindlessly.notenoughcoins.commands.subcommands.Subcommand;
-import me.mindlessly.notenoughcoins.utils.Utils;
+import me.mindlessly.coinsclient.Main;
+import me.mindlessly.coinsclient.Reference;
+import me.mindlessly.coinsclient.commands.subcommands.Subcommand;
+import me.mindlessly.coinsclient.utils.Utils;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.BlockPos;

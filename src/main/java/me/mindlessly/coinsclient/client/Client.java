@@ -1,4 +1,4 @@
-package me.mindlessly.notenoughcoins.client;
+package me.mindlessly.coinsclient.client;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -6,9 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import me.mindlessly.notenoughcoins.Config;
-import me.mindlessly.notenoughcoins.utils.ApiHandler;
-import me.mindlessly.notenoughcoins.utils.Utils;
+import me.mindlessly.coinsclient.Config;
+import me.mindlessly.coinsclient.utils.ApiHandler;
+import me.mindlessly.coinsclient.utils.Utils;
 
 public class Client {
 	public static ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);

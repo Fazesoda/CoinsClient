@@ -1,4 +1,4 @@
-package me.mindlessly.notenoughcoins.commands.subcommands;
+package me.mindlessly.coinsclient.commands.subcommands;
 
 import net.minecraft.command.ICommandSender;
 

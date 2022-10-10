@@ -1,11 +1,11 @@
-package me.mindlessly.notenoughcoins;
+package me.mindlessly.coinsclient;
 
-import me.mindlessly.notenoughcoins.commands.CCCommand;
-import me.mindlessly.notenoughcoins.commands.subcommands.Help;
-import me.mindlessly.notenoughcoins.commands.subcommands.Subcommand;
-import me.mindlessly.notenoughcoins.commands.subcommands.Toggle;
-import me.mindlessly.notenoughcoins.events.OnChatReceived;
-import me.mindlessly.notenoughcoins.events.OnWorldJoin;
+import me.mindlessly.coinsclient.commands.CCCommand;
+import me.mindlessly.coinsclient.commands.subcommands.Help;
+import me.mindlessly.coinsclient.commands.subcommands.Subcommand;
+import me.mindlessly.coinsclient.commands.subcommands.Toggle;
+import me.mindlessly.coinsclient.events.OnChatReceived;
+import me.mindlessly.coinsclient.events.OnWorldJoin;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
