@@ -3,22 +3,30 @@ package me.mindlessly.notenoughcoins.utils;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.Authenticator;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.Instant;
 import java.util.Base64;
+import java.util.Objects;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import gg.essential.universal.UChat;
+import me.mindlessly.notenoughcoins.Config;
+import me.mindlessly.notenoughcoins.Main;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Utils {
 
 	public final static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	private static boolean hasSkyblockScoreboard = false;
 
 	public static JsonElement getJson(String jsonUrl) {
 		try {
@@ -30,6 +38,45 @@ public class Utils {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public static void sendMessageWithPrefix(String message) {
+		UChat.chat("§6§lCoins&e§lClient §7§l>> " + message.replaceAll("&", "§"));
+	}
+
+	public static double calculateProfit(double lowestBin, double price) {
+		if (lowestBin - price >= 1000000) {
+			return (lowestBin - price) - (lowestBin * 0.02);
+		} else {
+			return (lowestBin - price) - (lowestBin * 0.02);
+		}
+	}
+
+	public static void updatePurse() {
+		JsonArray profilesArray = Objects
+				.requireNonNull(getJson("https://api.hypixel.net/skyblock/profiles?key=" + Config.apiKey + "&uuid="
+						+ Main.uuid))
+				.getAsJsonObject().getAsJsonArray("profiles");
+
+		// Get last played profile
+		int profileIndex = 0;
+		Instant lastProfileSave = Instant.EPOCH;
+		for (int i = 0; i < profilesArray.size(); i++) {
+			Instant lastSaveLoop;
+			try {
+				lastSaveLoop = Instant.ofEpochMilli(profilesArray.get(i).getAsJsonObject().get("members")
+						.getAsJsonObject().get(Main.uuid).getAsJsonObject().get("last_save").getAsLong());
+			} catch (Exception e) {
+				continue;
+			}
+
+			if (lastSaveLoop.isAfter(lastProfileSave)) {
+				profileIndex = i;
+				lastProfileSave = lastSaveLoop;
+			}
+		}
+		ApiHandler.balance = profilesArray.get(profileIndex).getAsJsonObject().get("members").getAsJsonObject()
+				.get(Main.uuid).getAsJsonObject().get("coin_purse").getAsDouble();
 	}
 
 	// https://github.com/Moulberry/NotEnoughUpdates/blob/7c6d37b2eb758a13b342b906f0aef88b940bc52a/src/main/java/io/github/moulberry/notenoughupdates/NEUManager.java#L726
@@ -107,5 +154,4 @@ public class Utils {
 		}
 		return internalname;
 	}
-
 }

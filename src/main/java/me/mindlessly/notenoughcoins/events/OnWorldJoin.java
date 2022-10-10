@@ -1,4 +1,4 @@
-package me.mindlessly.notenoughcoins;
+package me.mindlessly.notenoughcoins.events;
 
 import me.mindlessly.notenoughcoins.client.Client;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -8,6 +8,6 @@ public class OnWorldJoin {
 
 	@SubscribeEvent
 	public void onEntityJoinWorld(FMLNetworkEvent.ClientConnectedToServerEvent event) {
-		Client.start();
+		Client.checkIfUpdate();
 	}
 }
