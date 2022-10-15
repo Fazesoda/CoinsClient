@@ -7,10 +7,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import me.mindlessly.coinsclient.Config;
-import me.mindlessly.coinsclient.Reference;
 import me.mindlessly.coinsclient.utils.ApiHandler;
 import me.mindlessly.coinsclient.utils.Utils;
-import net.minecraft.client.Minecraft;
 
 public class Client {
 	public static ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);

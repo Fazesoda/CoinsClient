@@ -15,10 +15,7 @@ import com.google.gson.JsonObject;
 
 import gg.essential.universal.USound;
 import me.mindlessly.coinsclient.Config;
-import net.minecraft.client.Minecraft;
 import net.minecraft.event.ClickEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
 import net.minecraft.util.ResourceLocation;
 
 public class ApiHandler {

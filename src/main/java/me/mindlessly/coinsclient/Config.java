@@ -4,7 +4,6 @@ import java.io.File;
 import java.net.URI;
 import java.util.Arrays;
 
-import gg.essential.api.EssentialAPI;
 import gg.essential.universal.UDesktop;
 import gg.essential.vigilance.Vigilant;
 import gg.essential.vigilance.data.Property;
