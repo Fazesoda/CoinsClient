@@ -20,10 +20,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import gg.essential.universal.UChat;
+import gg.essential.universal.wrappers.message.UTextComponent;
 import me.mindlessly.coinsclient.Config;
 import me.mindlessly.coinsclient.Main;
+import net.minecraft.event.ClickEvent;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatStyle;
 
 public class Utils {
 
@@ -46,6 +49,12 @@ public class Utils {
 		UChat.chat("§6§lCoins&e§lClient §7§l>> " + message.replaceAll("&", "§"));
 	}
 
+	public static void sendMessageWithPrefix(String message, ClickEvent clickEvent) {
+		UTextComponent result = new UTextComponent("§6§lCoins&e§lClient §7§l>>" + message.replaceAll("&", "§"));
+		result.setChatStyle(new ChatStyle().setChatClickEvent(clickEvent));
+		UChat.chat(result);
+	}
+
 	public static double calculateProfit(double lowestBin, double price) {
 		if (lowestBin - price >= 1000000) {
 			return (lowestBin - price) - (lowestBin * 0.02);
@@ -56,8 +65,8 @@ public class Utils {
 
 	public static void updatePurse() {
 		JsonArray profilesArray = Objects
-				.requireNonNull(getJson("https://api.hypixel.net/skyblock/profiles?key=" + Config.apiKey + "&uuid="
-						+ Main.uuid))
+				.requireNonNull(getJson(
+						"https://api.hypixel.net/skyblock/profiles?key=" + Config.apiKey + "&uuid=" + Main.uuid))
 				.getAsJsonObject().getAsJsonArray("profiles");
 
 		// Get last played profile
@@ -80,26 +89,29 @@ public class Utils {
 		ApiHandler.balance = profilesArray.get(profileIndex).getAsJsonObject().get("members").getAsJsonObject()
 				.get(Main.uuid).getAsJsonObject().get("coin_purse").getAsDouble();
 	}
-	
-	private static final NavigableMap<Double, String> suffixes = new TreeMap<> ();
+
+	private static final NavigableMap<Double, String> suffixes = new TreeMap<>();
 	static {
-	  suffixes.put(1000d, "k");
-	  suffixes.put(1000000d, "M");
-	  suffixes.put(1000000000d, "B");
+		suffixes.put(1000d, "k");
+		suffixes.put(1000000d, "M");
+		suffixes.put(1000000000d, "B");
 	}
 
 	public static String format(double value) {
-	  if (value == Long.MIN_VALUE) return format(Long.MIN_VALUE + 1);
-	  if (value < 0) return "-" + format(-value);
-	  if (value < 1000) return String.valueOf(value);
+		if (value == Long.MIN_VALUE)
+			return format(Long.MIN_VALUE + 1);
+		if (value < 0)
+			return "-" + format(-value);
+		if (value < 1000)
+			return String.valueOf(value);
 
-	  Entry<Double, String> e = suffixes.floorEntry(value);
-	  Double divideBy = e.getKey();
-	  String suffix = e.getValue();
+		Entry<Double, String> e = suffixes.floorEntry(value);
+		Double divideBy = e.getKey();
+		String suffix = e.getValue();
 
-	  double truncated = value / (divideBy / 10); //the number part of the output times 10
-	  boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
-	  return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
+		double truncated = value / (divideBy / 10); // the number part of the output times 10
+		boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
+		return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
 	}
 
 	// https://github.com/Moulberry/NotEnoughUpdates/blob/7c6d37b2eb758a13b342b906f0aef88b940bc52a/src/main/java/io/github/moulberry/notenoughupdates/NEUManager.java#L726

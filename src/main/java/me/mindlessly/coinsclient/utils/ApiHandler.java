@@ -42,9 +42,9 @@ public class ApiHandler {
 						if (Utils.calculateProfit(auction.getValue().getAsDouble(), price) > Config.minProfit
 								&& internalID.equals(auction.getKey())) {
 							Utils.sendMessageWithPrefix(
-									name + " +" + Utils.format(auction.getValue().getAsDouble() - price));
-							new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-									"/viewauction " + current.get("uuid").getAsString());
+									name + " +" + Utils.format(auction.getValue().getAsDouble() - price),
+									new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+											"/viewauction " + current.get("uuid").getAsString()));
 							if (Config.alertSounds) {
 								USound.INSTANCE.playSoundStatic(new ResourceLocation("note.pling"), 2F, 1.0F);
 							}
