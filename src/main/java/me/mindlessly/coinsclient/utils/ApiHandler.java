@@ -44,14 +44,11 @@ public class ApiHandler {
 					for (Map.Entry<String, JsonElement> auction : binJson.entrySet()) {
 						if (Utils.calculateProfit(auction.getValue().getAsDouble(), price) > Config.minProfit
 								&& internalID.equals(auction.getKey())) {
-							ChatComponentText flip = new ChatComponentText(
-									name + " +" + String.valueOf(Math.round(auction.getValue().getAsDouble() - price)));
-							ChatStyle style = new ChatStyle()
-									.setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-											"/viewauction " + current.get("uuid").getAsString()));
-							flip.setChatStyle(style);
-							Minecraft.getMinecraft().thePlayer.addChatMessage(flip);
-							if(Config.alertSounds) {
+							Utils.sendMessageWithPrefix(
+									name + " +" + Utils.format(auction.getValue().getAsDouble() - price));
+							new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+									"/viewauction " + current.get("uuid").getAsString());
+							if (Config.alertSounds) {
 								USound.INSTANCE.playSoundStatic(new ResourceLocation("note.pling"), 2F, 1.0F);
 							}
 							break;

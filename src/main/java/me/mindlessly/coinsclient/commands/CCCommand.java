@@ -30,7 +30,7 @@ public class CCCommand extends CommandBase {
 
     @Override
     public List<String> getCommandAliases() {
-        return Arrays.asList("coinsclient", "coinsclien");
+        return Arrays.asList("coinsclient", "coinsclien", "nec");
     }
 
     @Override
@@ -51,7 +51,7 @@ public class CCCommand extends CommandBase {
                     + subcommand.getCommandUsage() + EnumChatFormatting.DARK_AQUA + " - " + subcommand.getCommandDescription());
             }
         }
-        sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "NEC " + EnumChatFormatting.GREEN
+        sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "CC " + EnumChatFormatting.GREEN
             + Reference.VERSION + "\n" + String.join("\n", commandUsages)));
     }
 

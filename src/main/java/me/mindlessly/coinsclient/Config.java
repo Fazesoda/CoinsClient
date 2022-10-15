@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.Arrays;
 
+import gg.essential.api.EssentialAPI;
 import gg.essential.universal.UDesktop;
 import gg.essential.vigilance.Vigilant;
 import gg.essential.vigilance.data.Property;
@@ -11,6 +12,7 @@ import gg.essential.vigilance.data.PropertyType;
 import me.mindlessly.coinsclient.client.Client;
 
 public class Config extends Vigilant {
+	
 	@Property(type = PropertyType.SWITCH, category = "Flipping", subcategory = "Basic", name = "Enabled", description = "Whether the mod should check for and send flips")
 	public static boolean enabled = false;
 	@Property(type = PropertyType.NUMBER, category = "Flipping", subcategory = "Basic", name = "Minimum Profit", description = "The minimum amount of profit that is required for the mod to send you a flip", max = Integer.MAX_VALUE, increment = 10000)
@@ -26,7 +28,7 @@ public class Config extends Vigilant {
 	public Config() {
 		super(CONFIG_FILE, "Coins Client Menu");
 		initialize();
-		Arrays.asList("enabled", "apiKey").forEach(property -> registerListener(property, e -> Client.checkIfUpdate()));
+		Arrays.asList("enabled").forEach(property -> registerListener(property, e -> Client.checkIfUpdate()));
 	}
 
 	@Property(type = PropertyType.BUTTON, category = "Links", name = "Discord", description = "Join our Discord server!")
@@ -36,6 +38,7 @@ public class Config extends Vigilant {
 
 	@Property(type = PropertyType.BUTTON, category = "Links", name = "GitHub", description = "Help with the development!")
 	public static void github() {
-		UDesktop.browse(URI.create("https://github.com/mindlesslydev/NotEnoughCoins"));
+		UDesktop.browse(URI.create("https://github.com/mindlesslydev/CoinsClient"));
 	}
+	
 }

@@ -3,12 +3,14 @@ package me.mindlessly.coinsclient.utils;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.Authenticator;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.Instant;
 import java.util.Base64;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
 import java.util.Objects;
+import java.util.TreeMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -77,6 +79,27 @@ public class Utils {
 		}
 		ApiHandler.balance = profilesArray.get(profileIndex).getAsJsonObject().get("members").getAsJsonObject()
 				.get(Main.uuid).getAsJsonObject().get("coin_purse").getAsDouble();
+	}
+	
+	private static final NavigableMap<Double, String> suffixes = new TreeMap<> ();
+	static {
+	  suffixes.put(1000d, "k");
+	  suffixes.put(1000000d, "M");
+	  suffixes.put(1000000000d, "B");
+	}
+
+	public static String format(double value) {
+	  if (value == Long.MIN_VALUE) return format(Long.MIN_VALUE + 1);
+	  if (value < 0) return "-" + format(-value);
+	  if (value < 1000) return String.valueOf(value);
+
+	  Entry<Double, String> e = suffixes.floorEntry(value);
+	  Double divideBy = e.getKey();
+	  String suffix = e.getValue();
+
+	  double truncated = value / (divideBy / 10); //the number part of the output times 10
+	  boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
+	  return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
 	}
 
 	// https://github.com/Moulberry/NotEnoughUpdates/blob/7c6d37b2eb758a13b342b906f0aef88b940bc52a/src/main/java/io/github/moulberry/notenoughupdates/NEUManager.java#L726
