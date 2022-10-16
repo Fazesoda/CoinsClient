@@ -50,7 +50,7 @@ public class Utils {
 	}
 
 	public static void sendMessageWithPrefix(String message, ClickEvent clickEvent) {
-		UTextComponent result = new UTextComponent("§6§lCoins&e§lClient §7§l>>" + message.replaceAll("&", "§"));
+		UTextComponent result = new UTextComponent("§6§lCoins&e§lClient§7§l>>§f " + message.replaceAll("&", "§"));
 		result.setChatStyle(new ChatStyle().setChatClickEvent(clickEvent));
 		UChat.chat(result);
 	}
@@ -98,6 +98,7 @@ public class Utils {
 	}
 
 	public static String format(double value) {
+		value = Math.round(value);
 		if (value == Long.MIN_VALUE)
 			return format(Long.MIN_VALUE + 1);
 		if (value < 0)
